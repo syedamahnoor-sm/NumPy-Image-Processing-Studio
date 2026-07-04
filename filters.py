@@ -15,10 +15,10 @@ def negative(image_array):
     return (255 - image_array).astype(np.uint8)
 
 
-def brightness(image_array):
+def brightness(image_array, value=40):
     """Apply brightness to an RGB image"""
 
-    bright = image_array.astype(np.int16) + 40
+    bright = image_array.astype(np.int16) + value
     bright = np.clip(bright, 0, 255)
     return bright.astype(np.uint8)
 
