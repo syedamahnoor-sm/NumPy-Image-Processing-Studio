@@ -3,9 +3,17 @@ import os
 import numpy as np
 from PIL import Image
 
-from filters import grayscale
-from filters import negative
-
+from filters import (
+    grayscale,
+    negative,
+    brightness,
+    contrast,
+    horizontal_flip,
+    vertical_flip,
+    rotate_90,
+    crop,
+    threshold
+)
 
 #Load the image
 image = Image.open("images/input.jpg")
@@ -22,35 +30,23 @@ print(f"Dimensions  : {image_array.ndim}")
 print(f"Total Pixels: {image_array.shape[0] * image_array.shape[1]}")
 print(f"First Pixel : {image_array[0, 0]}")
 
-
-# Create Output Folder
-output_folder = "outputs"
-os.makedirs(output_folder, exist_ok=True)
-
 # Function to Save Image
-def save_image(image, filename):
-
-    filepath = os.path.join(output_folder, filename)
-
-    if os.path.exists(filepath):
-        print(f"{filename} already exists. Skipping...\n")
-        return
-
-    image.save(filepath)
-    print(f"{filename} saved successfully.\n")
+def save_image(array, filename):
+    os.makedirs("outputs", exist_ok=True)
+    image = Image.fromarray(array)
+    image.save(os.path.join("outputs", filename))
+    print(f"{filename} saved")
 
 
-#GRAYSCALE FILTER
-gray_array = grayscale(image_array)
+image = Image.open("images/input.jpg").convert("RGB")
+image_array = np.array(image)
 
-gray_image = Image.fromarray(gray_array)
-gray_image.save("outputs/grayscale.jpg")
-
-print("Grayscale image saved successfully.")
-
-#NEGATIVE FILTER
-negative_array = negative(image_array)
-
-negative_image = Image.fromarray(negative_array)
-
-save_image(negative_image, "negative.jpg")
+save_image(grayscale(image_array), "grayscale.jpg")
+save_image(negative(image_array), "negative.jpg")
+save_image(brightness(image_array), "brightness.jpg")
+save_image(contrast(image_array, 1.5), "contrast.jpg")
+save_image(horizontal_flip(image_array), "horizontal_flip.jpg")
+save_image(vertical_flip(image_array), "vertical_flip.jpg")
+save_image(rotate_90(image_array), "rotate_90.jpg")
+save_image(crop(image_array, 20, 120, 30, 180), "crop.jpg")
+save_image(threshold(image_array, 128), "threshold.jpg")
