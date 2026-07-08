@@ -72,7 +72,7 @@ numpy-image-processing-studio/
 Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/numpy-image-processing-studio.git
+git clone https://github.com/syedamahnoor-sm/numpy-image-processing-studio.git
 ```
 
 Navigate into the project
