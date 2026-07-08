@@ -125,18 +125,6 @@ This project helped me gain hands-on experience with:
 
 ---
 
-## 📷 Screenshots
-
-### Main Interface
-
-> Add a screenshot here
-
-### Processed Image Preview
-
-> Add a screenshot here
-
----
-
 ## 📄 License
 
 This project is licensed under the **MIT License**.
